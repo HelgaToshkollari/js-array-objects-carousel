@@ -33,7 +33,7 @@ const sliderContainer = document.querySelector(".slider")
 const images = [
     {
         image: "img/01.webp",
-        title: "Marvel\"s Spiderman Miles Morale",
+        title: "Marvel's Spiderman Miles Morale",
         text: "Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.",
     },
     {
@@ -58,21 +58,69 @@ const images = [
     }
 ];
 
-const imgesSlider = images.map( function (imgEl) {
-    const sliderEl =`<div>
-                    ${imgEl.title}
-                    <img class="img-fluid" src="${imgEl.image}"/>
-                    ${imgEl.text}
+/*
+//stampo array su html
+const imgesSlider = images.map( function (imgEl,) {
+
+    const sliderEl =`<img class="img-fluid" src="${imgEl.image}"/>
+                    <div class="position-absolute top-0 end-0 text-end text-white m-4">
+                        <h2>${imgEl.title}</h2>
+                        <p> ${imgEl.text} </p>
                     </div>`
+
     sliderContainer.innerHTML += sliderEl;
     return{
        sliderEl,
     };
    
+}); 
+*/
 
-    
+images.forEach(function(imgEl){
+    const sliderEl =`<div class="container-slider">
+                        <img class="img-slider" src="${imgEl.image}"/>
+                        <div class="text-slider">
+                            <h2>${imgEl.title}</h2>
+                            <p>${imgEl.text}</p>
+                        </div>
+                    </div>`
+    sliderContainer.innerHTML += sliderEl;
 
    
-}); 
 
-console.log(imgesSlider);
+})
+
+for ( let i = 0 ; i < images.length ; i++){
+    const imgEl = images[i];
+    const sliderEl =`<div class="container-slider">
+                        <img class="img-slider" src="${imgEl.image}"/>
+                        <div class="text-slider">
+                            <h2>${imgEl.title}</h2>
+                            <p>${imgEl.text}</p>
+                        </div>
+                    </div>`;
+    sliderContainer.innerHTML += sliderEl;                
+}
+let imgIndex = 0;
+const showImg = document.getElementsByClassName("container-slider")
+showImg[imgIndex].classList.add("active")
+
+
+const next = document.querySelector('.arrow-down');
+
+next.addEventListener('click', function() {
+
+    if ( imgIndex < images.length - 1 ) {
+        imgIndex++;
+        const showImg = document.getElementsByClassName("container-slider");
+        
+        showImg[imgIndex].classList.add("active");
+        showImg[imgIndex].classList.remove("active");
+    } else {
+        imgIndex = 0;
+       
+        showImg[imgIndex].classList.add("active");
+         showImg[imgIndex].classList.remove("active");
+    }
+
+});
