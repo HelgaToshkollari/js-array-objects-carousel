@@ -58,37 +58,7 @@ const images = [
     }
 ];
 
-/*
-//stampo array su html
-const imgesSlider = images.map( function (imgEl,) {
-
-    const sliderEl =`<img class="img-fluid" src="${imgEl.image}"/>
-                    <div class="position-absolute top-0 end-0 text-end text-white m-4">
-                        <h2>${imgEl.title}</h2>
-                        <p> ${imgEl.text} </p>
-                    </div>`
-
-    sliderContainer.innerHTML += sliderEl;
-    return{
-       sliderEl,
-    };
-   
-}); 
-*/
-
-images.forEach(function(imgEl){
-    const sliderEl =`<div class="container-slider">
-                        <img class="img-slider" src="${imgEl.image}"/>
-                        <div class="text-slider">
-                            <h2>${imgEl.title}</h2>
-                            <p>${imgEl.text}</p>
-                        </div>
-                    </div>`
-    sliderContainer.innerHTML += sliderEl;
-
-   
-
-})
+let imgIndex = 0;
 
 for ( let i = 0 ; i < images.length ; i++){
     const imgEl = images[i];
@@ -99,28 +69,51 @@ for ( let i = 0 ; i < images.length ; i++){
                             <p>${imgEl.text}</p>
                         </div>
                     </div>`;
-    sliderContainer.innerHTML += sliderEl;                
+    sliderContainer.innerHTML += sliderEl; 
+ 
 }
-let imgIndex = 0;
-const showImg = document.getElementsByClassName("container-slider")
-showImg[imgIndex].classList.add("active")
+
+const showImg = document.getElementsByClassName("container-slider");
+
+
+showImg[imgIndex].classList.add("active");
 
 
 const next = document.querySelector('.arrow-down');
 
 next.addEventListener('click', function() {
 
-    if ( imgIndex < images.length - 1 ) {
-        imgIndex++;
-        const showImg = document.getElementsByClassName("container-slider");
-        
-        showImg[imgIndex].classList.add("active");
-        showImg[imgIndex].classList.remove("active");
-    } else {
+    if(imgIndex === images.length - 1){
+
         imgIndex = 0;
-       
+        showImg[images.length - 1].classList.remove("active");
         showImg[imgIndex].classList.add("active");
-         showImg[imgIndex].classList.remove("active");
+
+    }else{
+        imgIndex++;
+        showImg[imgIndex - 1].classList.remove("active");
+        showImg[imgIndex].classList.add("active");
+
+    }
+
+
+});
+
+const previous = document.querySelector('.arrow-up');
+
+previous.addEventListener('click', function() {
+
+   if(imgIndex === 0){
+
+        imgIndex = images.length - 1;
+        showImg[0].classList.remove("active");
+        showImg[imgIndex].classList.add("active");
+
+    }else{
+        imgIndex--;
+        showImg[imgIndex + 1].classList.remove("active");
+        showImg[imgIndex].classList.add("active");
+
     }
 
 });

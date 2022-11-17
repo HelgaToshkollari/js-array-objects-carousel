@@ -1,5 +1,7 @@
 
-
+body{
+    background-color:lightcyan;
+}
 .container-slider{
     position: relative;
     display: none;
@@ -10,7 +12,7 @@
 
 .img-slider{
     width: 100%;
-    height:250px;
+    height:350px;
     object-fit: cover;
     object-position: center;
 }
@@ -19,7 +21,7 @@
     bottom: 10px;
     color: white;
 }
-/*
+
 .arrow-up, .arrow-down {
     position: absolute;
     height: 20px;
@@ -30,11 +32,11 @@
     margin: 1rem;
     left: 50%;
     transform: translate(-50%);
-    z-index: 100;
+    z-index: 10;
 }
 .arrow-up {
-    top: 0;
+    top: 2%;
 }
 .arrow-down {
-    bottom: 0;
-}*/
+    top: 46%;
+}
